@@ -51,6 +51,7 @@ public class Marktplatz {
 
         int anzahlBeziehungen = (personList.size() * (personList.size() - 1)) / 2;
         int anzahlDreierPaare = calculateCombinations(peoplecount, 3);
+        int anzahlDreierBEZIEHUNGEN = anzahlDreierPaare * 6;
 
         System.out.println("Insgesammt werde ich dich nach " + anzahlBeziehungen * 2 + " Schuldbeziehungen Fragen. Sollen wir fortfahren?\n Außerdem gibt es " + anzahlDreierPaare + " mögliche 3er Paare. \n[Enter zum Fortfahren!]");
         scanner.nextLine();
@@ -95,7 +96,9 @@ public class Marktplatz {
 
             //TODO ------------------------------------------------------------------------------------------------------------------------------  TODO
 
+            for (int i = 0; i < anzahlDreierPaare; i++) {
 
+            }
 
 
         }
