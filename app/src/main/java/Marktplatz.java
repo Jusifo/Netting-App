@@ -69,7 +69,7 @@ public class Marktplatz {
                 String personA = personList.get(i).getName();
                 String personB = personList.get(j).getName();
 
-                System.out.println("Wie viel geld erhält " + personB + " von " + personA + "?");
+                System.out.println("Wie viel geld schuldet " + personA + " noch " + personB + "?");
                 schuld = scanner.nextInt();
                 scanner.nextLine();
                 Schuldenbeziehungen.add(new Schuld(personList.get(i), personList.get(j), schuld));
@@ -80,6 +80,11 @@ public class Marktplatz {
         System.out.println("|                                   Grundsätzlich                                   |");
         System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
         System.out.println();
+        for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
+            Schuld x = Schuldenbeziehungen.get(i);
+            System.out.println(x.getSchuldner().getName() + " schuldet " + x.getEmpfaenger().getName() + " " + x.getSumme() + "€.");
+        }
+
 
         boolean goon = true;
         Person a;
