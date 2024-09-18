@@ -88,6 +88,10 @@ public class Marktplatz {
         Person c;
         int gamma;
 
+        Schuld A;
+        Schuld B;
+        Schuld C;
+
         int mod = anzahlDreierBEZIEHUNGEN / personList.size();
         int modus = personList.size() - 2;
         int counter = 0;
@@ -140,14 +144,18 @@ public class Marktplatz {
                     counter++;
                 }
                 c = personList.get(gamma);
-            }
 
+                A = Schuldfinder(a,b);
+                B = Schuldfinder(b,c);
+                C = Schuldfinder(a,c);
+
+                goon = tripleswitch(A,B,C);
+                if (goon) {
+                    break;
+                }
+
+            }
             //TODO - END ------------------------------------------------------------------------------------------------------------------------------  TODO
-
-            for (int i = 0; i < anzahlDreierPaare; i++) {
-
-            }
-
 
         }
 
@@ -181,6 +189,15 @@ public class Marktplatz {
         return result;
     }
 
+    public Schuld Schuldfinder (Person a, Person b){
+        for (Schuld current : Schuldenbeziehungen) {
+            if (current.getSchuldner().equals(a) && current.getEmpfaenger().equals(b))
+                return current;
+        }
+        System.err.println("Kein Schuldverhältnis gefunden hä?");
+        return null;
+    }
+
     public void doubleswitch(Schuld a, Schuld b){
         if (b.getSumme() > a.getSumme()){
             Schuld temp = a;
@@ -191,11 +208,16 @@ public class Marktplatz {
         b.setSumme(0);
     }
 
-    public void tripleswitch(Schuld a, Schuld b, Schuld c){
-        double sum = Math.min(a.getSumme(), b.getSumme());
-        a.setSumme(a.getSumme()-sum);
-        b.setSumme(b.getSumme()-sum);
-        c.setSumme(c.getSumme()+sum);
+    public boolean tripleswitch(Schuld a, Schuld b, Schuld c){
+        boolean change = false;
+        if (a.getSumme() != 0 && b.getSumme() != 0){
+            change = true;
+            double sum = Math.min(a.getSumme(), b.getSumme());
+            a.setSumme(a.getSumme()-sum);
+            b.setSumme(b.getSumme()-sum);
+            c.setSumme(c.getSumme()+sum);
+        }
+        return change;
     }
 
     public List<Person> getPersonList() {
