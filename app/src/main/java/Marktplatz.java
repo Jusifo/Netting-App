@@ -35,6 +35,12 @@ public class Marktplatz {
                 scanner.next();
             }
         }
+
+        if (peoplecount <= 1){
+            System.out.println("Du Witzbold");
+            return;
+        }
+
         for (int i = 0; i < peoplecount; i++){
             if (i == 0)
                 System.out.println("Alles klar, mit wem wollen wir anfangen?");
