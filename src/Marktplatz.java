@@ -95,6 +95,20 @@ public class Marktplatz {
             }
 
             //TODO ------------------------------------------------------------------------------------------------------------------------------  TODO
+            //In diesem Abschnitt muss jede mögliche 3er Kombination gefunden werden die es für die eingegebenen Namen gibt und überprüft werden ob
+            // zwei Transaktionen die 'in eine Richtung gehen' vorliegen
+
+            for (int i = 0; i < anzahlDreierBEZIEHUNGEN; i++) {
+                //1.
+
+                //2.
+
+                //3.
+
+            }
+
+
+            //TODO - END ------------------------------------------------------------------------------------------------------------------------------  TODO
 
             for (int i = 0; i < anzahlDreierPaare; i++) {
 
