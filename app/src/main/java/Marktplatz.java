@@ -40,6 +40,10 @@ public class Marktplatz {
             System.out.println("Du Witzbold");
             return;
         }
+        if (peoplecount > 10){
+            System.out.println("Vergisses");
+            return;
+        }
 
         for (int i = 0; i < peoplecount; i++){
             if (i == 0)
