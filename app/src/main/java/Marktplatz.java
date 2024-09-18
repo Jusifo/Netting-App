@@ -57,7 +57,7 @@ public class Marktplatz {
         int anzahlDreierPaare = calculateCombinations(peoplecount, 3);
         int anzahlDreierBEZIEHUNGEN = anzahlDreierPaare * 6;
 
-        System.out.println("Insgesammt werde ich dich nach " + anzahlBeziehungen * 2 + " Schuldbeziehungen Fragen. Sollen wir fortfahren?\n Außerdem gibt es " + anzahlDreierPaare + " mögliche 3er Paare. \n[Enter zum Fortfahren!]");
+        System.out.println("Insgesammt werde ich dich nach " + anzahlBeziehungen * 2 + " Schuldbeziehungen Fragen. \nAußerdem gibt es " + anzahlDreierPaare + " mögliche 3er Paare. \n[Enter zum Fortfahren!]");
         scanner.nextLine();
 
         int schuld = 0;
@@ -95,6 +95,7 @@ public class Marktplatz {
         int mod = anzahlDreierBEZIEHUNGEN / personList.size();
         int modus = personList.size() - 2;
         int counter = 0;
+        boolean firsttime = true;
 
         while (goon){
             goon = false;
@@ -112,6 +113,21 @@ public class Marktplatz {
                     }
                 }
             }
+
+            if (firsttime) {
+                System.out.println();
+                System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
+                System.out.println("|                                Nach zweier Netting                                |");
+                System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
+                System.out.println();
+                for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
+                    Schuld x = Schuldenbeziehungen.get(i);
+                    System.out.println(x.getSchuldner().getName() + " schuldet " + x.getEmpfaenger().getName() + " " + x.getSumme() + "€.");
+                }
+                firsttime = false;
+            }
+            else
+                System.out.println("New Line!");
 
             //TODO ------------------------------------------------------------------------------------------------------------------------------  TODO
             //In diesem Abschnitt muss jede mögliche 3er Kombination gefunden werden die es für die eingegebenen Namen gibt und überprüft werden ob
