@@ -75,10 +75,11 @@ public class Marktplatz {
                 Schuldenbeziehungen.add(new Schuld(personList.get(i), personList.get(j), schuld));
             }
         }
-        for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
-            Schuld x = Schuldenbeziehungen.get(i);
-            System.out.println(x.getSchuldner().getName() + " schuldet " + x.getEmpfaenger().getName() + " " + x.getSumme() + "€.");
-        }
+        System.out.println();
+        System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
+        System.out.println("|                                   Grundsätzlich                                   |");
+        System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
+        System.out.println();
 
         boolean goon = true;
         Person a;
