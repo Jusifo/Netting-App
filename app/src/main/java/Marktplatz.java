@@ -81,6 +81,17 @@ public class Marktplatz {
         }
 
         boolean goon = true;
+        Person a;
+        int alpha;
+        Person b;
+        int beta;
+        Person c;
+        int gamma;
+
+        int mod = anzahlDreierBEZIEHUNGEN / personList.size();
+        int modus = personList.size() - 2;
+        int counter = 0;
+
         while (goon){
             goon = false;
             for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
@@ -104,13 +115,32 @@ public class Marktplatz {
 
             for (int i = 0; i < anzahlDreierBEZIEHUNGEN; i++) {
                 //1.
+                alpha = i/mod;
+                a = personList.get(alpha);
 
                 //2.
+                beta = (i%mod)/modus;
+                if (beta >= alpha) {
+                    beta++;
+                }
+                b = personList.get(beta);
 
                 //3.
-
+                gamma = i%modus;
+                if (gamma == 0) {
+                    counter = 0;
+                }
+                gamma += counter;
+                if (alpha == gamma || beta == gamma) {
+                    gamma++;
+                    counter++;
+                }
+                if (alpha == gamma || beta == gamma) {
+                    gamma++;
+                    counter++;
+                }
+                c = personList.get(gamma);
             }
-
 
             //TODO - END ------------------------------------------------------------------------------------------------------------------------------  TODO
 
