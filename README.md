@@ -9,7 +9,7 @@ A command-line tool that calculates the simplest way to settle debts among a gro
 
 The easiest way to try this application is to download the pre-built executable JAR file.
 
-1.  **Go to the [Releases Page](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/releases)** on the right side of this repository's main page.
+1.  **Go to the [Releases Page](https://github.com/Jusifo/Netting-App/releases)** on the right side of this repository's main page.
 2.  Download the `netting-all.jar` file from the latest release.
 3.  Open a terminal (or Command Prompt on Windows).
 4.  Navigate to the directory where you downloaded the file, for example:
