@@ -1,8 +1,11 @@
 # Netting-App
 
+This small Java program demonstrates a basic implementation of a netting algorithm. Netting is a financial process used to offset and consolidate multiple transactions between parties into a single net payment or receipt, minimizing the number of transactions and reducing risks and costs.
+I took some time as a hobby project to develop this algorithm to understand and implement the netting concept. The code provides a straightforward example of how netting can be applied to balance transactions. Feel free to explore and adapt the algorithm for your own financial or computational needs.
+
 A command-line tool that calculates the simplest way to settle debts among a group of people. This project demonstrates a netting algorithm in Java, built with Gradle.
 
-## How to Run (For Recruiters & Testers)
+## How to Run
 
 The easiest way to try this application is to download the pre-built executable JAR file.
 
@@ -19,21 +22,3 @@ The easiest way to try this application is to download the pre-built executable 
     ```
 
 _**Prerequisite:** You need to have Java 17 (or newer) installed on your system._
-
-## How to Build from Source (For Developers)
-
-If you want to build the project yourself, follow these steps:
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-    ```
-2.  Navigate into the project directory:
-    ```bash
-    cd Netting-App
-    ```
-3.  Build the executable JAR using the Gradle wrapper:
-    ```bash
-    ./gradlew shadowJar
-    ```
-4.  The final JAR file will be located at `app/build/libs/netting-all.jar`. You can run it using the command from the section above.
