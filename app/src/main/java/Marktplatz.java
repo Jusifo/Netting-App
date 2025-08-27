@@ -4,7 +4,7 @@ import java.util.*;
 public class Marktplatz {
 
     private List<Person> personList;
-    private List<Schuld> Schuldenbeziehungen;
+    private List<Debt> Schuldenbeziehungen;
 
     public Marktplatz(List<Person> personList) {
         this.personList = personList;
@@ -76,7 +76,7 @@ public class Marktplatz {
                 System.out.println("Wie viel geld schuldet " + personA + " noch " + personB + "?");
                 schuld = scanner.nextInt();
                 scanner.nextLine();
-                Schuldenbeziehungen.add(new Schuld(personList.get(i), personList.get(j), schuld));
+                Schuldenbeziehungen.add(new Debt(personList.get(i), personList.get(j), schuld));
             }
         }
         System.out.println();
@@ -85,8 +85,8 @@ public class Marktplatz {
         System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
         System.out.println();
         for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
-            Schuld x = Schuldenbeziehungen.get(i);
-            System.out.println(x.getSchuldner().getName() + " schuldet " + x.getEmpfaenger().getName() + " " + x.getSumme() + "€.");
+            Debt x = Schuldenbeziehungen.get(i);
+            System.out.println(x.getDebtor().getName() + " schuldet " + x.getCreditor().getName() + " " + x.getAmount() + "€.");
         }
 
 
@@ -98,9 +98,9 @@ public class Marktplatz {
         Person c;
         int gamma;
 
-        Schuld A;
-        Schuld B;
-        Schuld C;
+        Debt A;
+        Debt B;
+        Debt C;
 
         int mod = anzahlDreierBEZIEHUNGEN / personList.size();
         int modus = personList.size() - 2;
@@ -110,12 +110,12 @@ public class Marktplatz {
         while (goon){
             goon = false;
             for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
-                Schuld current = Schuldenbeziehungen.get(i);
-                if (current.getSumme() != 0.0){
+                Debt current = Schuldenbeziehungen.get(i);
+                if (current.getAmount() != 0.0){
                     for (int i1 = 0; i1 < Schuldenbeziehungen.size(); i1++) {
-                        Schuld competator = Schuldenbeziehungen.get(i1);
-                        if (current.getSchuldner().equals(competator.getEmpfaenger()) && current.getEmpfaenger().equals(competator.getSchuldner())){
-                            if (competator.getSumme() != 0.0){
+                        Debt competator = Schuldenbeziehungen.get(i1);
+                        if (current.getDebtor().equals(competator.getCreditor()) && current.getCreditor().equals(competator.getDebtor())){
+                            if (competator.getAmount() != 0.0){
                                 doubleswitch(current, competator);
                             }
                             break;
@@ -131,8 +131,8 @@ public class Marktplatz {
                 System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
                 System.out.println();
                 for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
-                    Schuld x = Schuldenbeziehungen.get(i);
-                    System.out.println(x.getSchuldner().getName() + " schuldet " + x.getEmpfaenger().getName() + " " + x.getSumme() + "€.");
+                    Debt x = Schuldenbeziehungen.get(i);
+                    System.out.println(x.getDebtor().getName() + " schuldet " + x.getCreditor().getName() + " " + x.getAmount() + "€.");
                 }
                 firsttime = false;
             }
@@ -189,8 +189,8 @@ public class Marktplatz {
         System.out.println("|                               Nach finalem Netting                                |");
         System.out.println(" --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
         for (int i = 0; i < Schuldenbeziehungen.size(); i++) {
-            Schuld x = Schuldenbeziehungen.get(i);
-            System.out.println(x.getSchuldner().getName() + " schuldet " + x.getEmpfaenger().getName() + " " + x.getSumme() + "€.");
+            Debt x = Schuldenbeziehungen.get(i);
+            System.out.println(x.getDebtor().getName() + " schuldet " + x.getCreditor().getName() + " " + x.getAmount() + "€.");
         }
         scanner.close();
     }
@@ -215,33 +215,33 @@ public class Marktplatz {
         return result;
     }
 
-    public Schuld Schuldfinder (Person a, Person b){
-        for (Schuld current : Schuldenbeziehungen) {
-            if (current.getSchuldner().equals(a) && current.getEmpfaenger().equals(b))
+    public Debt Schuldfinder (Person a, Person b){
+        for (Debt current : Schuldenbeziehungen) {
+            if (current.getDebtor().equals(a) && current.getCreditor().equals(b))
                 return current;
         }
         System.err.println("Kein Schuldverhältnis gefunden hä?");
         return null;
     }
 
-    public void doubleswitch(Schuld a, Schuld b){
-        if (b.getSumme() > a.getSumme()){
-            Schuld temp = a;
+    public void doubleswitch(Debt a, Debt b){
+        if (b.getAmount() > a.getAmount()){
+            Debt temp = a;
             a = b;
             b = temp;
         }
-        a.setSumme(a.getSumme() - b.getSumme());
-        b.setSumme(0);
+        a.setAmount(a.getAmount() - b.getAmount());
+        b.setAmount(0);
     }
 
-    public boolean tripleswitch(Schuld a, Schuld b, Schuld c){
+    public boolean tripleswitch(Debt a, Debt b, Debt c){
         boolean change = false;
-        if (a.getSumme() != 0 && b.getSumme() != 0){
+        if (a.getAmount() != 0 && b.getAmount() != 0){
             change = true;
-            double sum = Math.min(a.getSumme(), b.getSumme());
-            a.setSumme(a.getSumme()-sum);
-            b.setSumme(b.getSumme()-sum);
-            c.setSumme(c.getSumme()+sum);
+            double sum = Math.min(a.getAmount(), b.getAmount());
+            a.setAmount(a.getAmount()-sum);
+            b.setAmount(b.getAmount()-sum);
+            c.setAmount(c.getAmount()+sum);
         }
         return change;
     }
